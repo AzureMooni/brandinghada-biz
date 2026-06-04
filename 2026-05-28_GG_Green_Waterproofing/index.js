@@ -3,6 +3,12 @@
    ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Force scroll to top on load/reload
+    if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     // 1. Initialize Lucide Icons
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();

@@ -3,11 +3,25 @@
    ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 0. Force scroll to top on load/reload
-    if (history.scrollRestoration) {
+    // 0. Force scroll to top on load/reload (Robust Mobile Support)
+    if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
-    window.scrollTo(0, 0);
+    const resetScroll = () => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    };
+    resetScroll();
+    setTimeout(resetScroll, 50);
+    setTimeout(resetScroll, 150);
+    setTimeout(resetScroll, 300);
+    setTimeout(resetScroll, 600);
+
+    window.addEventListener('load', () => {
+        resetScroll();
+        setTimeout(resetScroll, 100);
+    });
 
     // 1. Initialize Lucide Icons
     if (typeof lucide !== 'undefined') {
